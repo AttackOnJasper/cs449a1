@@ -1,0 +1,287 @@
+\documentclass{sigchi}
+
+% Load basic packages
+\usepackage{balance}       % to better equalize the last page
+\usepackage{graphics}      % for EPS, load graphicx instead 
+\usepackage[T1]{fontenc}   % for umlauts and other diaeresis
+\usepackage{txfonts}
+\usepackage{mathptmx}
+\usepackage[pdflang={en-US},pdftex]{hyperref}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{textcomp}
+
+\usepackage{enumitem}
+
+% Some optional stuff you might like/need.
+\usepackage{microtype}        % Improved Tracking and Kerning
+% \usepackage[all]{hypcap}    % Fixes bug in hyperref caption linking
+\usepackage{ccicons}          % Cite your images correctly!
+% \usepackage[utf8]{inputenc} % for a UTF8 editor only
+
+% If you want to use todo notes, marginpars etc. during creation of
+% your draft document, you have to enable the "chi_draft" option for
+% the document class. To do this, change the very first line to:
+% "\documentclass[chi_draft]{sigchi}". You can then place todo notes
+% by using the "\todo{...}"  command. Make sure to disable the draft
+% option again before submitting your final document.
+\usepackage{todonotes}
+
+% Paper metadata (use plain text, for PDF inclusion and later
+% re-using, if desired).  Use \emtpyauthor when submitting for review
+% so you remain anonymous.
+\def\plaintitle{CS 449/649 Assignment 1}
+\def\plainauthor{First Author, Second Author, Third Author, Fourth Author}
+\def\emptyauthor{}
+\def\plainkeywords{Authors' choice; of terms; separated; by
+  semicolons; include commas, within terms only; required.}
+\def\plaingeneralterms{Documentation, Standardization}
+
+% llt: Define a global style for URLs, rather that the default one
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{
+    \def\UrlFont{\sf}
+  }{
+    \def\UrlFont{\small\bf\ttfamily}
+  }}
+\makeatother
+\urlstyle{leo}
+
+% To make various LaTeX processors do the right thing with page size.
+\def\pprw{8.5in}
+\def\pprh{11in}
+\special{papersize=\pprw,\pprh}
+\setlength{\paperwidth}{\pprw}
+\setlength{\paperheight}{\pprh}
+\setlength{\pdfpagewidth}{\pprw}
+\setlength{\pdfpageheight}{\pprh}
+
+% Make sure hyperref comes last of your loaded packages, to give it a
+% fighting chance of not being over-written, since its job is to
+% redefine many LaTeX commands.
+\definecolor{linkColor}{RGB}{6,125,233}
+\hypersetup{%
+  pdftitle={\plaintitle},
+  pdfauthor={\emptyauthor},
+  pdfkeywords={\plainkeywords},
+  pdfdisplaydoctitle=true, % For Accessibility
+  bookmarksnumbered,
+  pdfstartview={FitH},
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=linkColor,
+  breaklinks=true,
+  hypertexnames=false
+}
+
+% create a shortcut to typeset table headings
+% \newcommand\tabhead[1]{\small\textbf{#1}}
+
+% End of preamble. Here it comes the document.
+\begin{document}
+
+\title{\plaintitle}
+
+\numberofauthors{4}
+\author{%
+  \alignauthor{Daocheng Wang \\
+    \affaddr{Mathematics}\\
+    \email{d93wang@uwaterloo.ca}}\\
+\alignauthor{Linna Zheng \\
+    \affaddr{Mathematics}\\
+    \email{l45zheng@uwaterloo.ca}}\\
+\alignauthor{Jenny Kim \\
+    \affaddr{Mathematics}\\
+    \email{yj43kim@uwaterloo.ca}}\\
+\alignauthor{Ri Xu \\
+    \affaddr{Mathematics}\\
+    \email{r39xu@uwaterloo.ca}}\\
+}
+
+\maketitle
+
+
+\section{Description of the project}
+
+WeatherReady is a mobile application that suggests clothing combinations that suit the weather, tailored specifically to the user's behaviours and preferences.
+
+The general market segment WeatherReady is targeting is based on geographic and demographic segments. The application aims to attract technology-dependent generations who live in geographical areas with weather variations. The application would excel in recommending different sets of clothing for changing weather. It targets the population who starts their day by looking at their mobile devices, since the application will send a notification with a suggested combination of clothing for the day.
+
+The motivation for this project was the constantly changing weather Kitchener-Waterloo area experienced for the past several weeks. Every morning would be a struggle for its residents as they always have to account for the changing weather variations and temperature for their choices. When it rains one day, sunny the day before, and snowing the next after, it is very hard to predict the weather patterns, and it is easy for people to dress inappropriately for the weather, which leaves them susceptible to catching a cold or a whole day of discomfort.
+
+WeatherReady is a push towards a more simplistic lifestyle that lets its users wake up without worrying about what they should wear for the day. It lets them focus on what is really important. Choosing the appropriate clothing generally takes time in the morning everyday, while resulting in no significant benefit in return for the time sink. The potential value is the cumulative time that this application would save for its users. They would be more ready for the day's weather without giving it much thought. Another potential value is for the application to be able to gather enough information to suggest combinations of clothing that are not only comfortable for the weather, but fashionable for the specific target user groups.
+
+The problem for this application is that it is heavily dependent on weather variations, so market segments in a stable-weather parts of the world would not have as much usability as those in constantly-changing weather locations. While spending 8 months in Sunnyvale, California, one of our team members barely had to change my dressing patterns because it was around 16-25 degrees weather and carrying around a sweater was enough for all weather variations. WeatherReady can serve solely as a fashion-advice application for those users in such calm weather locations.
+
+Due to the technology barrier, the application would not be beneficial for generations who do not rely on smartphones, such as elderly people (baby boomers), or who do not care much about getting ready in the morning (ignorance or heavy parental supervision), such as preschool and younger kids. The application can suggest clothing combinations to their guardian or parents who help them get dressed in the morning instead.
+
+
+\section{Goals and Hypotheses}
+\subsection{Goals}
+\begin{description}
+\item[$\bullet$] Help people select a combination of clothes to wear everyday based on geographic and demographic information. 
+\end{description}
+The users that WeatherReady targets are the people from different geographic areas with drastic weather variations. The problem that WeatherReady is trying to solve is that looking up the weather every morning, and then selecting what clothes they want to wear is time-consuming (especially in the morning as people normally do not have much time before going to work / school). We need to know what clothing and weather-related accessories our users have in order to provide such a service for them.
+
+\subsection{Hypotheses}
+\begin{description}
+\item[$\bullet$] The potential users would like to let a mobile application to select clothes for them and accept the suggestion given by the mobile app.
+\begin{enumerate}[label=\alph*]
+\item Need information from exploratory studies to determine whether users are willing to let the mobile app select clothes that fit the weather, instead of choosing their own clothes.
+\item Need to know if users are willing to spend the time to catalogue their clothing on the app; if not, whether there is an alternative, quick way to catalogue their clothing.
+\item Would also like to know if users will take suggestions on what and where to buy any missing weather-appropriate accessories or clothing.
+\end{enumerate}
+\item[$\bullet$]Most of people that lives in a targeting area with weather variations habitually check their phones from a mobile app in the morning.
+\begin{enumerate}[label=\alph*]
+\item Need information from external sources and third-party apps about user usages in the morning. If users do not use their phones in the morning, we need to know what is the best alternative time to notify them.
+\end{enumerate}
+\item[$\bullet$]Most of people that receives notifications from WeatherReady will open it inside the app instead of ignoring it.
+\begin{enumerate}[label=\alph*]
+\item Need information from external sources and third-party apps about user reactions to notifications with various contents.
+\end{enumerate}
+\item[$\bullet$]The weather forecast is accurate enough for WeatherReady to make decisions about what to wear (note that some places in the world might not have access to Google Map API thus it would be hard to get accurate weather forecast).
+\begin{enumerate}[label=\alph*]
+\item Since the target area is mostly in Canada and U.S., which are covered by Google Map API, the hypothesis would normally be true.
+\end{enumerate}
+
+\end{description}
+
+\section{Target user groups \& users for the studies}
+
+The following user characteristics are particularly important for the WeatherReady app:
+
+\begin{description}
+
+
+\item[$\bullet$] Means of transportation to school/work: if a user commutes by car, he/she would not need to prepare as much for the weather as someone who walks or takes public transit.
+
+\item[$\bullet$] Level of heating/cooling in buildings that user spends time in: if heating or cooling is not sufficient, then the user needs to dress appropriately. For instance, in China during the fall, people have to dress warmly for indoors because heating is not turned on.
+\item[$\bullet$] Whether or not the user is an immigrant from a warmer/colder climate: this will affect how he/she perceives cold/warmth.
+\item[$\bullet$] Whether the weather in the user's location fluctuates often: if the weather changes during the day, the user will need to be more prepared. If there are large temperature swings from day to day, then the user may need a stronger reminder to change his or her dressing habits for the next day.
+\item[$\bullet$]What clothing choices are required by someone's profession/degree: level of formality (e.g. business formal for finance), functional purposes (e.g construction work). If there are requirements, the user's clothing choices for warm, cool or rainy weather will be restricted.
+\item[$\bullet$]Percentage time spent outside versus inside
+\item[$\bullet$]Whether this person is a caregiver who helps elders / youngsters dress appropriately
+\item[$\bullet$]Age, gender: if a user is female, she may pay more attention to her appearance. If a user is a child, the user may be inclined to play outside more.
+\item[$\bullet$]Level of phone usage during the day: provides guidance as to what is the best time to remind users of upcoming weather conditions.
+\item[$\bullet$]Amount of time available to prepare in the morning
+\item[$\bullet$]Fashion preferences
+
+\end{description}
+
+For the purposes of this project, WeatherReady will be designed for students. Based on the demographics above, the following 5 personas would best represent the major user groups for the WeatherReady app:
+
+\begin{enumerate}
+
+
+
+\item Janice Wong: a finance co-op student who commutes to downtown Kitchener by car. Originally from Hong Kong, she feels very cold in the winter.``It's so cold in the office." she would often remark. On Mondays to Fridays, she needs to dress formally, and wants to make a good impression when she steps into the office. Despite how busy her mornings are, she spends her time doing her hair and aims to get to work 15 minutes early. She checks her phone in the morning, as soon as her alarm rings, and during lunchtime when she is bored. 
+
+\item Johnny Fowler: a third-year recreation \& leisure student who is part of the Waterloo Warriors. He lives with his parents and enjoys playing soccer and other physical activities outside all year round. Johnny doesn't like bringing hats, scarves and heavy coats when he runs around outside, since he gets pretty sweaty in them, and he often ``forgets" them at home. ``My mom is afraid that I'll catch a cold, but I've never caught one, and I wish she'll stop nagging me - I'm 20 already! "
+
+\item Max Greenhorn: an environmental engineering graduate student. He is an earlybird who wakes up naturally at 5 in the morning, and eases into its day without rushing into it. To save energy, he does not use a phone alarm, and checks it once per day in the late evening. He bikes to campus.``I hate it I ride into those really muddy puddles, or ride beside a car, and all that dirty water sprays onto me." To save on heating costs, he turns off the heat before leaving home and it always takes a while to get it back up \& running when he gets back.
+
+\item Fiona Ivankof: a first-year university student in Computer Science who is constantly caught off-guard by the weather. She is habitually disorganized. ``I always seem to be one step behind in my day, and I have to run to class every morning." She walks to campus. Sometimes she will pull all-nighters to finish her assignments, which weakens her immune system; and she winds up dreadfully sick before exams because preparing for the weather is always the last thing on her mind. On some days she is particularly stressed because she has interviews with prospective employers - a suit and a pair of high heels have to go into her backpack, which is already heavy with her laptop.
+
+\item Joel Naimo: a student in his first year of Arts and Business who physically cannot separate from his phone. He is into trendy clothing and rap, and is constantly tweeting about his band. Every three months, he travels abroad to perform at music competitions. Being from Nunavut originally, he does not like any heat above 30 degrees Celsius. ``When I'm abroad, I feel faint when we're setting up an outdoors stage and the sun's rays are burning at my eyes. I constantly feel dehydrated."
+\end{enumerate}
+
+\iffalse
+\begin{table}
+  \centering
+  \begin{tabular}{l r r r}
+    % \toprule
+    & & \multicolumn{2}{c}{\small{\textbf{Test Conditions}}} \\
+    \cmidrule(r){3-4}
+    {\small\textit{Name}}
+    & {\small \textit{First}}
+      & {\small \textit{Second}}
+    & {\small \textit{Final}} \\
+    \midrule
+    Name 1 & 223.0 & 44 & 432,321 \\
+    Name 2 & 22.2 & 16 & 234,333 \\
+    Name 3 & 22.9 & 11 & 93,123 \\
+    Name 4 & 34.9 & 2200 & 103,322 \\
+    % \bottomrule
+  \end{tabular}
+  \caption{Table captions should be placed below the table. We
+    recommend table lines be 1 point, 25\% black. Minimize use of
+    table grid lines.}~\label{tab:table1}
+\end{table}
+
+
+\section{Figures/Captions}
+
+Place figures and tables at the top or bottom of the appropriate
+column or columns, on the same page as the relevant text (see
+Figure~\ref{fig:figure1}). 
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=1.75\columnwidth]{map.png}
+  \caption{In this image, the map maximizes use of space. You can make
+    figures as wide as you need, up to a maximum of the full width of
+    both columns. Note that \LaTeX\ tends to render large figures on a
+    dedicated page. Image: \ccbynd~ayman on
+    Flickr.}~\label{fig:figure2}
+\end{figure*}
+
+\subsection{Inserting Images}
+When possible, include a vector formatted graphic (i.e. PDF or EPS).
+When including bitmaps,  use an image editing tool to resize the image
+at the appropriate printing resolution (usually 300 dpi).
+\begin{quote}
+Longer quotes, when placed in their own paragraph, need not be
+italicized or in quotation marks when indented (Ramon, 39M).  
+\end{quote}
+\fi
+
+\section{Plan for observation \& interviews}
+\subsection{Observation}
+We want to observe our participants in various environments because want to know how people's clothing preferences change when environmental factors (temperature, humidity, wind speed, precipitation etc.) and geolocation (urban or rural) change. The following environments are worth observing for this purpose:
+\begin{itemize}
+    \item City downtown with rainy/sunny/windy/cloudy weather
+    \item Countryside with  rainy/sunny/windy/cloudy weather
+\end{itemize}
+Also, we need to observe how people's clothing preferences and temperature indoors and outdoors changes throughout a day, from early morning to late night so that we can make suitable suggestions to our users. Non-participant observation will be used in this case. 
+
+Here's a sample observation form:
+\begin{table}[h]
+    \resizebox{\columnwidth}{!}{%
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+    Time & Location & Conditions & Actor (Gender, age) & Dresscode & Top \\\hline Bottom & Hat (Y/N) & Shoes & Body Language & Intepretation & Notes \\\hline
+  \end{tabular}
+  }
+\end{table}
+
+Explanation
+\begin{itemize}
+    \item Location: Urban or Rural area, outdoors or indoors
+    \item Conditions: Weather or temperature conditions
+    \item Actor: Male or Female, age group (children/teenager/ adult/senior)
+    \item Dress code: Formal/ Business Casual/ Casual
+    \item Top: Clothing for upper body, such as shirt/hoodies/jacket/t-shirt etc.
+    \item Bottom: Clothing for lower body, such as dress pants/shorts/ sweatpants etc.
+    \item Body Language/ Facial Expression : participants' reaction to the weather
+    \item Interpretation: whether participants like the weather or not, their occupations, whether participants are satisfied with their clothing choice
+\end{itemize}
+
+We picked these sections because we can gather our core demographics information and clothing preferences, which is extremely important and useful to know our audiences.
+
+\iffalse
+\section{References Format}
+Your references should be published materials accessible to the
+public. 
+
+\bibliographystyle{SIGCHI-Reference-Format}
+\bibliography{sample}
+\fi
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
